@@ -2,7 +2,6 @@ package com.tutorial.mycourse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +31,9 @@ public class CourseFormActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (courseCodeInput.getText().length() > 0 && courseNameInput.getText().length() > 0) {
+
+                    MainActivity.courses.addCourse(new Course(courseCodeInput.getText().toString(), courseNameInput.getText().toString()));
+
                     String toastMessage = "Successfully uploaded";
                     Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
 
@@ -44,7 +46,7 @@ public class CourseFormActivity extends AppCompatActivity {
                             // Call Intent
                             startActivity(toHome);
                         }
-                    }, 1000);
+                    }, 500);
 
                 } else {
                     String toastMessage = "Invalid input. Input must not be blank!";

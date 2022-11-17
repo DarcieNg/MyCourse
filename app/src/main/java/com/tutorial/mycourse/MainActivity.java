@@ -1,10 +1,15 @@
 package com.tutorial.mycourse;
 
+import static com.tutorial.mycourse.CourseList.list;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rcvCourse;
     private CourseAdapter courseAdapter;
 
+    public static final String messageId = "push_notification_id";
+
     FloatingActionButton addCourseBtn;
+
+    public static CourseList courses = new CourseList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcvCourse.setLayoutManager(linearLayoutManager);
 
-        courseAdapter.setData(getCourseList());
+        courseAdapter.setData(courses.getList());
         rcvCourse.setAdapter(courseAdapter);
 
         addCourseBtn = (FloatingActionButton) findViewById(R.id.fab);
@@ -47,23 +56,18 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        createChannelNotification();
     }
 
-    private List<Course> getCourseList() {
-        List<Course> list = new ArrayList<>();
-        list.add(new Course("OENG1181", "Introduction to Professional Engineering Practice"));
-        list.add(new Course("MATH2481", "Mathematics Engineering"));
-        list.add(new Course("EEET2481", "Introduction to Electrical and Electronics Engineering"));
-        list.add(new Course("EEET2403", "Computing Engineering"));
-        list.add(new Course("OENG1181", "Introduction to Professional Engineering Practice"));
-        list.add(new Course("MATH2481", "Mathematics Engineering"));
-        list.add(new Course("EEET2481", "Introduction to Electrical and Electronics Engineering"));
-        list.add(new Course("EEET2403", "Computing Engineering"));
-        list.add(new Course("OENG1181", "Introduction to Professional Engineering Practice"));
-        list.add(new Course("MATH2481", "Mathematics Engineering"));
-        list.add(new Course("EEET2481", "Introduction to Electrical and Electronics Engineering"));
-        list.add(new Course("EEET2403", "Computing Engineering"));
+    private void createChannelNotification() {
 
-        return list;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(messageId, "Push_Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(notificationChannel);
+        }
     }
+
+
 }

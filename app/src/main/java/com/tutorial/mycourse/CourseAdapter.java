@@ -41,6 +41,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         holder.courseId.setText(course.getCourseId());
         holder.courseName.setText(course.getCourseName());
+
+        // add Listener to toggle card
     }
 
     @Override
