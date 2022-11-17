@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyCourse</string>
+
+    <!--  new course form values  -->
+    <string name="course_code">Course Code</string>
+    <string name="course_name">Course Title</string>
+
+</resources>
