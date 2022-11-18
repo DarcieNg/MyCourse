@@ -1,7 +1,5 @@
 package com.tutorial.mycourse;
 
-import static com.tutorial.mycourse.CourseList.list;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,17 +13,15 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tutorial.mycourse.course.CourseAdapter;
+import com.tutorial.mycourse.course.CourseList;
+import com.tutorial.mycourse.subactivities.CourseFormActivity;
 
 // Control behaviors of main activity
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rcvCourse;
     private CourseAdapter courseAdapter;
-
-    public static final String messageId = "push_notification_id";
 
     FloatingActionButton addCourseBtn;
 
@@ -56,18 +52,5 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        createChannelNotification();
     }
-
-    private void createChannelNotification() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(messageId, "Push_Notification", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(notificationChannel);
-        }
-    }
-
-
 }

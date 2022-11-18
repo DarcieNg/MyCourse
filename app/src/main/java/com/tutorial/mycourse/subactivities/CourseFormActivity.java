@@ -1,4 +1,4 @@
-package com.tutorial.mycourse;
+package com.tutorial.mycourse.subactivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.tutorial.mycourse.MainActivity;
+import com.tutorial.mycourse.R;
+import com.tutorial.mycourse.course.Course;
 
 public class CourseFormActivity extends AppCompatActivity {
 
@@ -32,6 +36,7 @@ public class CourseFormActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (courseCodeInput.getText().length() > 0 && courseNameInput.getText().length() > 0) {
 
+                    // Add course to the course list
                     MainActivity.courses.addCourse(new Course(courseCodeInput.getText().toString(), courseNameInput.getText().toString()));
 
                     String toastMessage = "Successfully uploaded";
