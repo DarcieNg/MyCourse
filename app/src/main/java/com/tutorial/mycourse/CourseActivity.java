@@ -1,40 +1,63 @@
 package com.tutorial.mycourse;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.WindowManager;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.tutorial.mycourse.file.FileAdapter;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 public class CourseActivity extends AppCompatActivity {
 
-    private RecyclerView rcvFile;
-    private FileAdapter fileAdapter;
-
-    public static List<File> files = new ArrayList<>();
+//    PDFView view;
+    WebView view;
+    private ProgressBar progressBar;
+    private ImageButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_course);
 
-        rcvFile = findViewById(R.id.rcv_file);
-        fileAdapter = new FileAdapter(this);
+        view = findViewById(R.id.view);
+        button = findViewById(R.id.back_btn);
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rcvFile.setLayoutManager(linearLayoutManager);
-        fileAdapter.setData(files);
+        view.getSettings().getBuiltInZoomControls();
+        view.getSettings().getDisplayZoomControls();
+        view.setWebChromeClient(new WebChromeClient());
 
-        rcvFile.setAdapter(fileAdapter);
+        Intent intent = getIntent();
+        final int position = intent.getIntExtra("position", 0);
+
+        view.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+//                view.loadUrl("file:///assets/" + MainActivity.courses.get(position).getFile());
+                view.loadUrl("https://docs.google.com/document/d/1OIcQ8dJ_FAhdkirU94M29-ZbNZ4oQs1LbWF3Nz-mq_U/edit#");
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHome = new Intent(CourseActivity.this, MainActivity.class);
+                startActivity(toHome);
+            }
+        });
+
+
+
+
+
+
     }
 }
 

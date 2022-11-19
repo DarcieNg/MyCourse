@@ -6,12 +6,12 @@ import java.util.List;
 public class Course {
     private String courseId;
     private String courseName;
-    private List<File> files;
+    private String file;
 
-    public Course(String courseId, String courseName, List<File> files) {
+    public Course(String courseId, String courseName, String file) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.files = files;
+        this.file = file;
     }
 
     public String getCourseId() {
@@ -30,11 +30,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public List<File> getFiles() {
-        return files;
+    public String getFile() {
+        return file;
     }
 
-    public void setFiles(List<File> files) {
-        this.files = files;
+    public void setFile(String file) {
+        this.file = file;
     }
 }

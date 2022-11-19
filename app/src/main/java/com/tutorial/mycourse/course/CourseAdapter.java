@@ -15,11 +15,14 @@ import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
 
+    private final CourseRecyclerInterface recyclerInterface;
     private Context courseContext;
     private List<Course> courseList;
 
-    public CourseAdapter(Context courseContext) {
+    public CourseAdapter(Context courseContext, List<Course> courseList, CourseRecyclerInterface recyclerInterface) {
         this.courseContext = courseContext;
+        this.courseList = courseList;
+        this.recyclerInterface = recyclerInterface;
     }
 
     public void setData (List<Course> list) {
@@ -31,7 +34,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_card, parent, false);
-        return new CourseViewHolder(view);
+        return new CourseViewHolder(view, recyclerInterface);
     }
 
     @Override
@@ -40,11 +43,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if (course == null) {
             return;
         }
-
         holder.courseId.setText(course.getCourseId());
         holder.courseName.setText(course.getCourseName());
 
-        // add Listener to toggle card
     }
 
     @Override
@@ -55,16 +56,29 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         return 0;
     }
 
-    public class CourseViewHolder extends RecyclerView.ViewHolder {
+    public static class CourseViewHolder extends RecyclerView.ViewHolder {
 
         private TextView courseId;
         private TextView courseName;
 
-        public CourseViewHolder(@NonNull View itemView) {
+        public CourseViewHolder(@NonNull View itemView, CourseRecyclerInterface recyclerInterface) {
             super(itemView);
 
             courseId = itemView.findViewById(R.id.course_id);
             courseName = itemView.findViewById(R.id.course_name);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                     if(recyclerInterface != null) {
+                         int position = getBindingAdapterPosition();
+
+                         if (position != RecyclerView.NO_POSITION) {
+                             recyclerInterface.onClickCourse(position);
+                         }
+                     }
+                }
+            });
         }
     }
 }
