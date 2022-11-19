@@ -36,7 +36,9 @@ public class MainActivity extends AppCompatActivity implements CourseRecyclerInt
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        setDataForCourse();
+        if (courses.isEmpty()) {
+            setDataForCourse();
+        }
 
         rcvCourse = findViewById(R.id.rcv_course);
 
