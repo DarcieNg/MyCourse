@@ -4,18 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tutorial.mycourse.course.CourseAdapter;
 import com.tutorial.mycourse.course.CourseList;
-import com.tutorial.mycourse.subactivities.CourseFormActivity;
 
 // Control behaviors of main activity
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rcvCourse;
     private CourseAdapter courseAdapter;
 
-    FloatingActionButton addCourseBtn;
 
     public static CourseList courses = new CourseList();
 
@@ -41,16 +33,5 @@ public class MainActivity extends AppCompatActivity {
 
         courseAdapter.setData(courses.getList());
         rcvCourse.setAdapter(courseAdapter);
-
-        addCourseBtn = (FloatingActionButton) findViewById(R.id.fab);
-
-        addCourseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CourseFormActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 }
