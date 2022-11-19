@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#8BBB86FC"
+    android:background="@color/light_blue"
     tools:context=".SplashActivity">
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:textSize="45dp"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/dark_blue"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

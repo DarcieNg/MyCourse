@@ -4,24 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tutorial.mycourse.file.FileAdapter;
-import com.tutorial.mycourse.file.FileList;
-import com.tutorial.mycourse.subactivities.UploadActivity;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourseActivity extends AppCompatActivity {
 
     private RecyclerView rcvFile;
     private FileAdapter fileAdapter;
 
-    FloatingActionButton addFileBtn;
-
-    public static FileList files = new FileList();
+    public static List<File> files = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +32,9 @@ public class CourseActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcvFile.setLayoutManager(linearLayoutManager);
-        fileAdapter.setData(files.getList());
+        fileAdapter.setData(files);
 
         rcvFile.setAdapter(fileAdapter);
-
-        addFileBtn = (FloatingActionButton) findViewById(R.id.fab_course);
-
-        addFileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CourseActivity.this, UploadActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 }
 

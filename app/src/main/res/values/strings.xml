@@ -5,4 +5,26 @@
     <string name="course_code">Course Code</string>
     <string name="course_name">Course Title</string>
 
+    <string-array name="courses_name">
+        <item>Software Engineering Fundamentals for IT</item>
+        <item>Software Engineering Design</item>
+        <item>Practical Database Concepts</item>
+        <item>Object-Oriented Programming</item>
+        <item>Engineering Computing 1</item>
+        <item>Data Structures and Algorithms</item>
+        <item>Introduction to Embedded System</item>
+        <item>Digital Fundamentals</item>
+    </string-array>
+
+    <string-array name="courses_code">
+        <item>ISYS3416</item>
+        <item>EEET2482</item>
+        <item>ISYS3414</item>
+        <item>INTE2512</item>
+        <item>EEET2601</item>
+        <item>COSC2658</item>
+        <item>EEET2505</item>
+        <item>OENG1207</item>
+    </string-array>
+
 </resources>

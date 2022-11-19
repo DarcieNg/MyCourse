@@ -17,7 +17,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     private Context courseContext;
     private List<Course> courseList;
-    private int checkedPosition = -1;
 
     public CourseAdapter(Context courseContext) {
         this.courseContext = courseContext;
@@ -66,20 +65,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
             courseId = itemView.findViewById(R.id.course_id);
             courseName = itemView.findViewById(R.id.course_name);
-        }
-
-        void bind(final Course course) {
-            if (checkedPosition == -1) {
-                // no position is targeted
-                return;
-            } else {
-                if (checkedPosition == getBindingAdapterPosition()) {
-                    // intent to the belonged list of files of the courses
-                } else {
-                    // no position is targeted
-                    return;
-                }
-            }
         }
     }
 }

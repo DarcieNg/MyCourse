@@ -1,34 +1,17 @@
 package com.tutorial.mycourse.course;
 
-import com.tutorial.mycourse.file.FileList;
+import java.io.File;
+import java.util.List;
 
 public class Course {
     private String courseId;
     private String courseName;
-    private FileList files;
-    boolean isChecked;
+    private List<File> files;
 
-    public Course(String courseId, String courseName) {
+    public Course(String courseId, String courseName, List<File> files) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.files = new FileList();
-        this.isChecked = false;
-    }
-
-    public FileList getFiles() {
-        return files;
-    }
-
-    public void setFiles(FileList files) {
         this.files = files;
-    }
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
     }
 
     public String getCourseId() {
@@ -45,5 +28,13 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public List<File> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<File> files) {
+        this.files = files;
     }
 }

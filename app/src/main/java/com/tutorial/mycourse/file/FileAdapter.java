@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tutorial.mycourse.R;
 
+import java.io.File;
 import java.util.List;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder>{
@@ -19,14 +20,14 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
      * TASK NEED TO DO: Change List<PDFfile> to FileList based on the id of the course ???
      */
     private Context fileContext;
-    private List<PDFfile> fileList;
+    private List<File> files;
 
     public FileAdapter(Context fileContext) {
         this.fileContext = fileContext;
     }
 
-    public void setData (List<PDFfile> list) {
-        this.fileList = list;
+    public void setData (List<File> list) {
+        this.files = list;
         notifyDataSetChanged();
     }
 
@@ -39,20 +40,20 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FileAdapter.FileViewHolder holder, int position) {
-        PDFfile file = fileList.get(position);
+        File file = files.get(position);
         if (file == null) {
             return;
         }
 
-        holder.fileName.setText(file.getFile_name());
+        holder.fileName.setText(file.getName());
 
         // add behavior to display file - using WebView
     }
 
     @Override
     public int getItemCount() {
-        if (fileList != null) {
-            return fileList.size();
+        if (files != null) {
+            return files.size();
         }
         return 0;
     }

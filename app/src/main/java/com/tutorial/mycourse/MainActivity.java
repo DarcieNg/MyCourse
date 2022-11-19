@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.tutorial.mycourse.course.Course;
 import com.tutorial.mycourse.course.CourseAdapter;
-import com.tutorial.mycourse.course.CourseList;
+
+import java.util.ArrayList;
 
 // Control behaviors of main activity
 public class MainActivity extends AppCompatActivity {
@@ -16,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rcvCourse;
     private CourseAdapter courseAdapter;
 
-
-    public static CourseList courses = new CourseList();
+    ArrayList<Course> courses = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,16 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcvCourse.setLayoutManager(linearLayoutManager);
 
-        courseAdapter.setData(courses.getList());
+        courseAdapter.setData(courses);
         rcvCourse.setAdapter(courseAdapter);
+    }
+
+    private void setDataForCourse() {
+        String[] coursesName = getResources().getStringArray(R.array.courses_name);
+        String[] coursesCode = getResources().getStringArray(R.array.courses_code);
+
+        for (int i = 0; i < coursesCode.length; i++) {
+
+        }
     }
 }
