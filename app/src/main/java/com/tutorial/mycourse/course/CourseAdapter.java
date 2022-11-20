@@ -67,6 +67,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             courseId = itemView.findViewById(R.id.course_id);
             courseName = itemView.findViewById(R.id.course_name);
 
+            // problems: does not get the position of the course -> return null binder
+            
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
