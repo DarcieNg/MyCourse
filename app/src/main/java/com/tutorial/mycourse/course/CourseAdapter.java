@@ -68,12 +68,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             courseName = itemView.findViewById(R.id.course_name);
 
             // problems: does not get the position of the course -> return null binder
-            
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                      if(recyclerInterface != null) {
-                         int position = getBindingAdapterPosition();
+                         int position = getAbsoluteAdapterPosition();
 
                          if (position != RecyclerView.NO_POSITION) {
                              recyclerInterface.onClickCourse(position);

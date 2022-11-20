@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -15,4 +16,15 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/rcv_course"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/add_dark"
+        app:backgroundTint="@color/tan"
+        android:elevation="10dp"/>
 </RelativeLayout>

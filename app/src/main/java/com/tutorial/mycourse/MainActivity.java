@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tutorial.mycourse.course.Course;
 import com.tutorial.mycourse.course.CourseAdapter;
 import com.tutorial.mycourse.course.CourseRecyclerInterface;
@@ -20,15 +22,10 @@ public class MainActivity extends AppCompatActivity implements CourseRecyclerInt
     private RecyclerView rcvCourse;
     private CourseAdapter courseAdapter;
 
-    public static ArrayList<Course> courses = new ArrayList<>();
+    // button navigating to create new course activity
+    private FloatingActionButton button;
 
-    String[] docName = {
-            "Computer_Systems_I.pdf",
-            "Algorithmics.pdf",
-            "Data_Management.pdf",
-            "Interaction_Design.pdf",
-            "Cybersecurity"
-    };
+    public static ArrayList<Course> courses = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,27 +33,39 @@ public class MainActivity extends AppCompatActivity implements CourseRecyclerInt
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        // Sample data calling
         if (courses.isEmpty()) {
             setDataForCourse();
         }
 
+        // handle adapter for course list
         rcvCourse = findViewById(R.id.rcv_course);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcvCourse.setLayoutManager(linearLayoutManager);
-
         courseAdapter = new CourseAdapter(this, courses, this);
-
         courseAdapter.setData(courses);
         rcvCourse.setAdapter(courseAdapter);
+
+        // handle button
+        button = findViewById(R.id.fab);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddCourseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+    // Testing data
     private void setDataForCourse() {
         String[] coursesName = getResources().getStringArray(R.array.courses_name);
         String[] coursesCode = getResources().getStringArray(R.array.courses_code);
+        String[] coursesNote = getResources().getStringArray(R.array.courses_note);
 
         for (int i = 0; i < coursesCode.length; i++) {
-            courses.add(new Course(coursesCode[i], coursesName[i], docName[i]));
+            courses.add(new Course(coursesCode[i], coursesName[i], coursesNote[i]));
         }
     }
 

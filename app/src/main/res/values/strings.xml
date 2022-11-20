@@ -21,4 +21,12 @@
         <item>COMP3201</item>
     </string-array>
 
+    <string-array name="courses_note">
+        <item>A CPU has: -	Registers (units of memory for storing values in) -	Control unit CU (a unit that tells other components what to do) -	Arithmetic and Logic unit ALU (for maths, mainly floating point) -	Internal CPU interconnection (the very sticky glue that holds it together)</item>
+        <item>random access: random access is the ability to access an arbitrary element of a sequence in equal time or any datum from a population of addressable elements roughly as easily and efficiently as any other, no matter how many elements may be in the set</item>
+        <item>Grep - The ‘grep’ command will find regex matches in a text and print every line which contains at least one match</item>
+        <item>Classical theory - Using psychology and predictive methods to determine how people will interact with our system</item>
+        <item>XSS is when the user can not only provide text but also code for some input which is used as an output somewhere else</item>
+    </string-array>
+
 </resources>
